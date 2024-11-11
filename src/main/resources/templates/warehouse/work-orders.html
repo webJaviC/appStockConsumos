@@ -61,8 +61,9 @@
                 <td th:class="${workOrder.status == T(com.printshop.model.WorkOrderStatus).OPEN ? 'status-open' : 'status-closed'}"
                     th:text="${workOrder.status}"></td>
                 <td>
-                    <a th:href="@{/warehouse/work-orders/{id}(id=${workOrder.id})}" 
-                       class="btn">Manage Materials</a>
+                    <a th:if="${workOrder.status == T(com.printshop.model.WorkOrderStatus).OPEN}"
+                       th:href="@{/warehouse/work-orders/{id}(id=${workOrder.id})}" 
+                       class="btn">Assign Materials</a>
                 </td>
             </tr>
         </tbody>

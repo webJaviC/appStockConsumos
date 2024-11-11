@@ -29,6 +29,10 @@ public class ReceiptService {
         return receiptRepository.findByReceiptNumber(receiptNumber);
     }
 
+    public Optional<Receipt> findById(Long id) {
+        return receiptRepository.findById(id);
+    }
+
     public List<Receipt> findAll() {
         return receiptRepository.findAll();
     }

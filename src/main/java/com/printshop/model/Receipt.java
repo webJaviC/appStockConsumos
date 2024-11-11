@@ -23,4 +23,46 @@ public class Receipt {
 
     @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
     private Set<Material> materials;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getReceiptNumber() {
+		return receiptNumber;
+	}
+
+	public void setReceiptNumber(String receiptNumber) {
+		this.receiptNumber = receiptNumber;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public String getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
+
+	public Set<Material> getMaterials() {
+		return materials;
+	}
+
+	public void setMaterials(Set<Material> materials) {
+		this.materials = materials;
+	}
+    
+    
 }

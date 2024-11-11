@@ -34,9 +34,103 @@ public class WorkOrder {
 
     @OneToMany(mappedBy = "workOrder")
     private Set<MaterialAssignment> materialAssignments;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getRouteNumber() {
+		return routeNumber;
+	}
+
+	public void setRouteNumber(String routeNumber) {
+		this.routeNumber = routeNumber;
+	}
+
+	public String getCustomerNumber() {
+		return customerNumber;
+	}
+
+	public void setCustomerNumber(String customerNumber) {
+		this.customerNumber = customerNumber;
+	}
+
+	public String getProductNumber() {
+		return productNumber;
+	}
+
+	public void setProductNumber(String productNumber) {
+		this.productNumber = productNumber;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Weight getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Weight weight) {
+		this.weight = weight;
+	}
+
+	public Double getRequiredWeight() {
+		return requiredWeight;
+	}
+
+	public void setRequiredWeight(Double requiredWeight) {
+		this.requiredWeight = requiredWeight;
+	}
+
+	public Double getWidth() {
+		return width;
+	}
+
+	public void setWidth(Double width) {
+		this.width = width;
+	}
+
+	public Double getLength() {
+		return length;
+	}
+
+	public void setLength(Double length) {
+		this.length = length;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public WorkOrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(WorkOrderStatus status) {
+		this.status = status;
+	}
+
+	public Set<MaterialAssignment> getMaterialAssignments() {
+		return materialAssignments;
+	}
+
+	public void setMaterialAssignments(Set<MaterialAssignment> materialAssignments) {
+		this.materialAssignments = materialAssignments;
+	}
+    
+    
 }
 
-enum WorkOrderStatus {
-    OPEN,
-    CLOSED
-}

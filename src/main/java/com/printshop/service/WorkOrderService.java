@@ -1,6 +1,7 @@
 package com.printshop.service;
 
 import com.printshop.model.WorkOrder;
+import com.printshop.model.WorkOrderStatus;
 import com.printshop.model.Material;
 import com.printshop.model.MaterialAssignment;
 import com.printshop.repository.WorkOrderRepository;
