@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Receipt - Print Shop Inventory System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .details { margin-bottom: 30px; }
+        .details dt { font-weight: bold; margin-top: 10px; }
+        .details dd { margin-left: 0; margin-bottom: 5px; }
+        .table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .table th, .table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .table th { background-color: #f8f9fa; }
+    </style>
+</head>
+<body>
+    <h1>Receipt Details</h1>
+    
+    <dl class="details">
+        <dt>Receipt Number:</dt>
+        <dd th:text="${receipt.receiptNumber}"></dd>
+        
+        <dt>Date:</dt>
+        <dd th:text="${#temporals.format(receipt.date, 'dd/MM/yyyy')}"></dd>
+        
+        <dt>Supplier:</dt>
+        <dd th:text="${receipt.supplier}"></dd>
+    </dl>
+    
+    <h2>Materials</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Quality</th>
+                <th>Weight</th>
+                <th>Gross Weight</th>
+                <th>Net Weight</th>
+                <th>Dimensions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="material : ${receipt.materials}">
+                <td th:text="${material.code}"></td>
+                <td th:text="${material.quality.name}"></td>
+                <td th:text="${material.weight.name}"></td>
+                <td th:text="${material.grossWeight}"></td>
+                <td th:text="${material.netWeight}"></td>
+                <td th:text="${material.width + ' x ' + material.length}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
