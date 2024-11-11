@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Dashboard - Print Shop Inventory System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            color: white;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .dashboard-item {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .dashboard-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .dashboard-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <span sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/admin/users}">Users</a>
+        </span>
+        <span sec:authorize="hasAnyRole('ADMIN', 'PRODUCTION')">
+            <a th:href="@{/production/work-orders}">Work Orders</a>
+            <a th:href="@{/production/receipts}">Receipts</a>
+        </span>
+        <span sec:authorize="hasRole('WAREHOUSE')">
+            <a th:href="@{/warehouse/work-orders}">Work Orders</a>
+        </span>
+        <span sec:authorize="hasAnyRole('ADMIN', 'PRODUCTION', 'WAREHOUSE')">
+            <a th:href="@{/warehouse/inventory}">Inventory</a>
+        </span>
+        <a th:href="@{/logout}" style="float: right;">Logout</a>
+    </div>
+
+    <div class="content">
+        <h1>Welcome, <span sec:authentication="name"></span></h1>
+        
+        <div class="dashboard-grid">
+            <!-- Admin Section -->
+            <div class="dashboard-item" sec:authorize="hasRole('ADMIN')">
+                <h3>Administration</h3>
+                <ul>
+                    <li><a th:href="@{/admin/users}">Manage Users</a></li>
+                    <li><a th:href="@{/production/receipts/import}">Import Receipts</a></li>
+                </ul>
+            </div>
+            
+            <!-- Production Section -->
+            <div class="dashboard-item" sec:authorize="hasAnyRole('ADMIN', 'PRODUCTION')">
+                <h3>Production</h3>
+                <ul>
+                    <li><a th:href="@{/production/work-orders}">Manage Work Orders</a></li>
+                    <li><a th:href="@{/production/receipts}">Manage Receipts</a></li>
+                </ul>
+            </div>
+            
+            <!-- Warehouse Section -->
+            <div class="dashboard-item" sec:authorize="hasRole('WAREHOUSE')">
+                <h3>Warehouse</h3>
+                <ul>
+                    <li><a th:href="@{/warehouse/work-orders}">View Work Orders</a></li>
+                    <li><a th:href="@{/warehouse/inventory}">View Inventory</a></li>
+                </ul>
+            </div>
+            
+            <!-- Inventory Section (visible to all) -->
+            <div class="dashboard-item" sec:authorize="hasAnyRole('ADMIN', 'PRODUCTION', 'WAREHOUSE')">
+                <h3>Inventory</h3>
+                <ul>
+                    <li><a th:href="@{/warehouse/inventory}">View Stock</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
